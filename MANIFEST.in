@@ -1,0 +1,8 @@
+include LICENSE README.rst LICENSE tox.ini
+recursive-include tests *
+recursive-include xsdata_plantuml *
+
+
+exclude .pre-commit-config.yaml
+
+global-exclude .DS_Store *.pyc
