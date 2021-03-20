@@ -4,7 +4,6 @@ from typing import List
 
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
-
 from xsdata.codegen.models import Class
 from xsdata.codegen.resolver import DependenciesResolver
 from xsdata.formats.mixins import AbstractGenerator
@@ -39,7 +38,8 @@ class PlantUmlGenerator(AbstractGenerator):
         list."""
         resolver.process(classes)
         output = self.render_classes(resolver.sorted_classes())
-        return self.env.get_template("module.jinja2").render(output=output)
+        output = self.env.get_template("module.jinja2").render(output=output)
+        return f"{output}\n"
 
     def render_classes(self, classes: List[Class]) -> str:
         """Render the source code of the classes."""
