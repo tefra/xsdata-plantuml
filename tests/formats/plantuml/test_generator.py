@@ -31,17 +31,20 @@ class PlantUmlGeneratorTests(FactoryTestCase):
             str(Path("foo/tests.pu")), str(actual[0][0].relative_to(Path.cwd()))
         )
 
-        output = """@startuml
-
-class class_B {
-    +attr_B : string
-    +attr_C : string
-}
-class class_C {
-    +attr_D : string
-    +attr_E : string
-    +attr_F : string
-}
-
-@enduml"""
+        output = (
+            "@startuml\n"
+            "\n"
+            "class class_B {\n"
+            "    +attr_B : string\n"
+            "    +attr_C : string\n"
+            "}\n"
+            "class class_C {\n"
+            "    +attr_D : string\n"
+            "    +attr_E : string\n"
+            "    +attr_F : string\n"
+            "}\n"
+            "\n"
+            "@enduml"
+            "\n"
+        )
         self.assertEqual(output, actual[0][2])
