@@ -1,0 +1,22 @@
+name: PlantUML
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  plantuml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: wget --no-verbose https://downloads.sourceforge.net/project/plantuml/plantuml.jar
+      - run: java -jar plantuml.jar -v -tsvg samples
+      - uses: EndBug/add-and-commit@v7
+        with:
+          message: 'generate SVG for PlantUML'
+          add: '*.svg'
+          push: false
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

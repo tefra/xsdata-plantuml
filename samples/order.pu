@@ -35,4 +35,3 @@ class purchaseOrder {
 purchaseOrder *- PurchaseOrderType
 
 @enduml
-
