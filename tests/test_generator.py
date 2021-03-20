@@ -4,7 +4,7 @@ from xsdata.models.config import GeneratorConfig
 from xsdata.utils.testing import ClassFactory
 from xsdata.utils.testing import FactoryTestCase
 
-from xsdata_plantuml.formats.plantuml.generator import PlantUmlGenerator
+from xsdata_plantuml.generator import PlantUmlGenerator
 
 
 class PlantUmlGeneratorTests(FactoryTestCase):
