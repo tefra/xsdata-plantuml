@@ -1,22 +1,35 @@
-`xsData <https://github.com/tefra/xsdata>`_ PlantUML Plugin
-===========================================================
+`xsData <https://pypi.org/project/xsdata/>`_ PlantUML plugin
+============================================================
 
 Generate `PlantUML <https://plantuml.com/class-diagram>`_ class diagrams from xml
 schemas, wsdl definitions and directly from xml documents.
 
+.. image:: https://github.com/tefra/xsdata-plantuml/workflows/tests/badge.svg
+    :target: https://github.com/tefra/xsdata-plantuml/actions
+
+.. image:: https://codecov.io/gh/tefra/xsdata-plantuml/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/tefra/xsdata-plantuml
+
+.. image:: https://www.codefactor.io/repository/github/tefra/xsdata-plantuml/badge
+   :target: https://www.codefactor.io/repository/github/tefra/xsdata-plantuml
+
+.. image:: https://img.shields.io/pypi/pyversions/xsdata-plantuml.svg
+    :target: https://pypi.org/pypi/xsdata-plantuml/
+
+.. image:: https://img.shields.io/pypi/v/xsdata-plantuml.svg
+    :target: https://pypi.org/pypi/xsdata-plantuml/
 
 Usage
 =====
 
-
-.. code-block:: bash
+.. code:: bash
 
     $ pip install xsdata-plantuml
 
     $ xsdata samples/order.xsd --output plantuml --package samples
 
 
-.. code-block::
+.. code::
 
     @startuml
 
@@ -57,4 +70,4 @@ Usage
     @enduml
 
 
-.. image:: samples/order.svg
+.. image:: https://github.com/tefra/xsdata-plantuml/raw/master/samples/order.svg
