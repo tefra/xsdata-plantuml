@@ -17,7 +17,7 @@ class PlantUmlGenerator(AbstractGenerator):
     def __init__(self, config: GeneratorConfig):
         super().__init__(config)
         tpl_dir = Path(__file__).parent.joinpath("templates")
-        self.env = Environment(loader=FileSystemLoader(tpl_dir), autoescape=False)
+        self.env = Environment(loader=FileSystemLoader(str(tpl_dir)), autoescape=False)
 
     def render(self, classes: List[Class]) -> Iterator[GeneratorResult]:
         """Return a iterator of the generated results."""
