@@ -1,9 +1,11 @@
+import os
 from pathlib import Path
 
-from xsdata.models.config import GeneratorConfig
-from xsdata.utils.testing import ClassFactory
-from xsdata.utils.testing import FactoryTestCase
+from click.testing import CliRunner
 
+from xsdata.cli import cli
+from xsdata.models.config import GeneratorConfig
+from xsdata.utils.testing import ClassFactory, FactoryTestCase
 from xsdata_plantuml.generator import PlantUmlGenerator
 
 
@@ -48,3 +50,12 @@ class PlantUmlGeneratorTests(FactoryTestCase):
             "\n"
         )
         self.assertEqual(output, actual[0][2])
+
+    def test_integration(self):
+        runner = CliRunner()
+        os.chdir(Path(__file__).parent.parent)
+        file = Path(__file__).parent.parent.joinpath("samples/order.xsd").absolute()
+        result = runner.invoke(cli, [str(file), "-o", "plantuml", "-p", "samples"])
+
+        expected = "Generating package: samples.order"
+        self.assertIn(expected, result.output)

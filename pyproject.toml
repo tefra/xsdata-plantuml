@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools.packages.find]
+include = ["xsdata_plantuml*"]
+
+[project]
+name = "xsdata_plantuml"
+description = "xsdata PlantUML generator"
+authors = [{name = "Christodoulos Tsoulloftas", email = "chris@komposta.net"}]
+license = {text = "MIT"}
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Text Processing :: Markup :: XML",
+]
+keywords = ["xsd", "wsdl", "schema", "dtd", "plantuml", "generator", "cli"]
+requires-python = ">=3.8"
+dependencies = ["xsdata[cli]>=24.3"]
+dynamic = ["version"]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Source = "https://github.com/tefra/xsdata-plantuml"
+
+[project.entry-points]
+"xsdata.plugins.cli" = {xsdata_plantuml = "xsdata_plantuml.hook"}
+
+[project.optional-dependencies]
+test = [
+    "codecov",
+    "lxml",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.setuptools]
+include-package-data = true
+license-files = ["LICENSE"]
+
+[tool.setuptools.dynamic]
+version = {attr = "xsdata_plantuml.__version__"}
+
+[tool.ruff]
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # flake8-annotations
+    "ANN",
+    # flake8-comprehensions
+    "C4",
+    # isort
+    "I",
+    # pydocstyle
+    "D",
+]
+
+ignore = [
+    "ANN101",
+    "ANN201",
+    "ANN204",
+    "D100",
+    "D104",
+    "D107"
+]
+
+isort = { known-first-party = ['xsdata', 'tests'] }
+
+[tool.ruff.lint.per-file-ignores]
+"**/{tests}/*" = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.doc8]
+max-line-length = 88

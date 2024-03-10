@@ -1,13 +1,11 @@
 from pathlib import Path
-from typing import Iterator
-from typing import List
+from typing import Iterator, List
 
-from jinja2 import Environment
-from jinja2 import FileSystemLoader
+from jinja2 import Environment, FileSystemLoader
+
 from xsdata.codegen.models import Class
 from xsdata.codegen.resolver import DependenciesResolver
-from xsdata.formats.mixins import AbstractGenerator
-from xsdata.formats.mixins import GeneratorResult
+from xsdata.formats.mixins import AbstractGenerator, GeneratorResult
 from xsdata.models.config import GeneratorConfig
 
 
@@ -20,9 +18,9 @@ class PlantUmlGenerator(AbstractGenerator):
         self.env = Environment(loader=FileSystemLoader(str(tpl_dir)), autoescape=False)
 
     def render(self, classes: List[Class]) -> Iterator[GeneratorResult]:
-        """Return a iterator of the generated results."""
+        """Return an iterator of the generated results."""
         packages = {obj.qname: obj.target_module for obj in classes}
-        resolver = DependenciesResolver(packages=packages)
+        resolver = DependenciesResolver(registry=packages)
 
         for module, cluster in self.group_by_module(classes).items():
             yield GeneratorResult(
@@ -34,8 +32,7 @@ class PlantUmlGenerator(AbstractGenerator):
     def render_module(
         self, resolver: DependenciesResolver, classes: List[Class]
     ) -> str:
-        """Render the source code for the target module of the given class
-        list."""
+        """Render the source code for the target module."""
         resolver.process(classes)
         output = self.render_classes(resolver.sorted_classes())
         output = self.env.get_template("module.jinja2").render(output=output)
