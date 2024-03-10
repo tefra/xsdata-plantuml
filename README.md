@@ -59,4 +59,4 @@ purchaseOrder *- PurchaseOrderType
 @enduml
 ```
 
-[image](https://github.com/tefra/xsdata-plantuml/raw/main/samples/order.svg)
+![order.svg](https://github.com/tefra/xsdata-plantuml/raw/main/samples/order.svg)
