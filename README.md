@@ -30,14 +30,14 @@ class item {
     +productName : string
     +quantity : positiveInteger
     +USPrice : decimal
-    +comment : string
+    +comment : comment
     +shipDate : date
     +partNum : string
 }
 class PurchaseOrderType {
     +shipTo : USAddress
     +billTo : USAddress
-    +comment : string
+    +comment : comment
     +items : Items
     +orderDate : date
 }
@@ -50,7 +50,7 @@ class USAddress {
     +country : NMTOKEN
 }
 class comment {
-    +@value : string
+    +value : string
 }
 class purchaseOrder {
 }
